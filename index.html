@@ -3,19 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pendaftaran Mini Tournament Sempoi FC 2026</title>
+    <title>Pendaftaran Mini Tournament Sempoi FC Jr 2026</title>
     <style>
-        /* TEMA HITAM MERAH SEMPOI FC */
+        /* =========================================
+           TEMA WARNA: HITAM, MERAH & EMAS
+           ========================================= */
         :root {
-            --primary: #D32F2F;
-            --dark: #000000;
-            --bg: #121212;
-            --text: #ffffff;
-            --accent: #FFD700;
+            --primary: #D32F2F;   /* Merah Garang */
+            --dark: #050505;      /* Hitam Pekat */
+            --card-bg: #1a1a1a;   /* Kelabu Gelap untuk kotak */
+            --text: #ffffff;      /* Putih */
+            --gold: #D4AF37;      /* Emas Metalik */
+            --gold-light: #FFD700; 
         }
 
         body {
-            font-family: 'Segoe UI', sans-serif;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--dark);
             color: var(--text);
             margin: 0;
@@ -23,24 +26,26 @@
             display: flex;
             justify-content: center;
             min-height: 100vh;
+            background-image: radial-gradient(circle at top, #2a0a0a, #000000);
         }
 
         .container {
             width: 100%;
             max-width: 480px;
-            background-color: var(--bg);
-            border-radius: 12px;
-            box-shadow: 0 0 25px rgba(211, 47, 47, 0.4);
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.15); /* Glow Emas sikit */
             overflow: hidden;
             border: 1px solid #333;
+            position: relative;
         }
 
         /* HEADER */
         .header {
-            background: linear-gradient(180deg, #8b0000 0%, #000000 100%);
+            background: linear-gradient(180deg, #8b0000 0%, #1a1a1a 100%);
             text-align: center;
-            padding: 30px 20px;
-            border-bottom: 3px solid var(--primary);
+            padding: 35px 20px 20px;
+            border-bottom: 2px solid var(--gold);
         }
 
         .logo {
@@ -48,95 +53,169 @@
             height: 110px;
             background-color: #fff;
             border-radius: 50%;
-            border: 3px solid var(--accent);
+            border: 3px solid var(--gold);
             object-fit: contain;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
         }
 
-        h1 { margin: 10px 0 5px; font-size: 24px; text-transform: uppercase; letter-spacing: 1px; }
-        h2 { margin: 0; font-size: 14px; font-weight: normal; color: #ccc; }
+        /* TEXT EFEK EMAS BERKILAT */
+        .gold-title {
+            font-size: 28px;
+            margin: 5px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 800;
+            
+            /* Magic Gradient Emas */
+            background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0px 0px 0px rgba(255,255,255,0.2);
+        }
+
+        .sub-title {
+            font-size: 14px;
+            color: #ccc;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
 
         /* CONTENT */
         .content { padding: 25px; }
 
-        .card {
-            background-color: #1e1e1e;
-            border: 1px solid #333;
+        .info-card {
+            background-color: #252525;
+            border: 1px solid #444;
+            border-left: 4px solid var(--gold);
             border-radius: 8px;
             padding: 15px;
             margin-bottom: 20px;
-            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
+        
+        .info-label { font-size: 12px; color: #888; text-transform: uppercase; }
+        .info-val { font-size: 16px; font-weight: bold; color: var(--gold-light); }
 
-        .info-row { margin: 8px 0; font-size: 15px; }
-        .label { color: var(--primary); font-weight: bold; font-size: 12px; text-transform: uppercase; display: block; }
-
-        /* PAYMENT */
+        /* PAYMENT BOX */
         .payment-box {
-            background: #fff;
-            color: #000;
-            border-radius: 8px;
+            background: white;
+            color: black;
+            border-radius: 10px;
             padding: 20px;
             text-align: center;
             margin-bottom: 25px;
-            border: 2px solid var(--accent);
+            border: 2px solid var(--gold);
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.1);
         }
 
         .qr-code {
             width: 100%;
-            max-width: 200px;
+            max-width: 180px;
             margin: 10px auto;
             display: block;
+            border: 1px solid #ddd;
         }
 
-        .bank-info { font-weight: bold; font-size: 18px; margin: 10px 0; }
-        .acc-name { font-size: 14px; color: #555; font-weight: normal; }
-
-        /* FORM */
-        form { display: flex; flex-direction: column; gap: 15px; }
+        /* FORM STYLING */
+        form { display: flex; flex-direction: column; gap: 18px; }
         
-        .input-group { text-align: left; }
-        .input-group label { color: var(--accent); font-size: 14px; margin-bottom: 5px; display: block; font-weight: bold; }
+        .input-group label {
+            color: var(--gold);
+            font-size: 13px;
+            margin-bottom: 6px;
+            display: block;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
         
         input, select {
             width: 100%;
-            padding: 12px;
+            padding: 14px;
             background: #2a2a2a;
             border: 1px solid #444;
             color: white;
-            border-radius: 6px;
+            border-radius: 8px;
             font-size: 16px;
             box-sizing: border-box;
+            transition: all 0.3s;
         }
 
-        input:focus, select:focus { outline: none; border-color: var(--primary); }
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--gold);
+            background-color: #333;
+            box-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
+        }
 
+        /* BUTTON */
         button {
-            background-color: var(--primary);
+            background: linear-gradient(45deg, #b71c1c, #D32F2F);
             color: white;
-            padding: 15px;
+            padding: 16px;
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
             font-size: 18px;
             font-weight: bold;
             cursor: pointer;
             margin-top: 10px;
-            transition: 0.3s;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 3px solid #7f0000;
         }
         
-        button:hover { background-color: #b71c1c; }
-        button:disabled { background-color: #555; cursor: not-allowed; }
+        button:active {
+            transform: translateY(2px);
+            border-bottom: 1px solid #7f0000;
+        }
 
-        /* ALERTS */
+        button:disabled {
+            background: #444;
+            color: #888;
+            cursor: not-allowed;
+            border: none;
+        }
+
+        /* STATUS MESSAGES */
         .hidden { display: none; }
-        #loading { text-align: center; color: var(--accent); margin-top: 10px; font-size: 14px; }
+        
+        #loading {
+            text-align: center;
+            color: var(--gold);
+            margin-top: 15px;
+            font-size: 14px;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.6; }
+            50% { opacity: 1; }
+            100% { opacity: 0.6; }
+        }
         
         #success-screen {
             text-align: center;
-            padding: 40px 20px;
+            padding: 50px 20px;
             display: none;
+            animation: fadeIn 0.5s;
         }
-        .success-icon { font-size: 50px; color: #4CAF50; margin-bottom: 20px; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .success-icon {
+            font-size: 60px;
+            color: #4CAF50;
+            margin-bottom: 20px;
+            display: block;
+        }
 
     </style>
 </head>
@@ -147,33 +226,44 @@
         <div id="form-screen">
             <header class="header">
                 <img src="logo.jpg" alt="Logo Sempoi FC" class="logo" onerror="this.style.display='none'">
-                <h1>Pendaftaran<br>Sempoi FC 2026</h1>
-                <h2>18 Januari 2026 | Padang SK Pandan Jaya</h2>
+                
+                <h1 style="color:white; font-size:16px; margin:0; font-weight:normal;">PENDAFTARAN RASMI</h1>
+                <div class="gold-title">SEMPOI FC JR 2026</div>
+                <div class="sub-title">Kejohanan Akar Umbi</div>
             </header>
 
             <div class="content">
                 
-                <div class="card">
-                    <div class="info-row"><span class="label">Yuran Pendaftaran</span> RM10.00 Seorang</div>
+                <div class="info-card">
+                    <div>
+                        <div class="info-label">Tarikh</div>
+                        <div class="info-val">18 JANUARI 2026</div>
+                    </div>
+                    <div style="text-align:right;">
+                        <div class="info-label">Yuran</div>
+                        <div class="info-val">RM10.00</div>
+                    </div>
                 </div>
 
                 <div class="payment-box">
-                    <h3 style="margin-top:0; color:#b71c1c">INFO PEMBAYARAN</h3>
-                    <img src="qrcode.jpg" alt="QR Maybank" class="qr-code" onerror="this.src='https://placehold.co/200x200?text=QR+CODE'">
-                    <div class="bank-info">MAYBANK<br>162188500045</div>
-                    <div class="acc-name">Zunita Binti Haji Morat</div>
+                    <h3 style="margin-top:0; color:#b71c1c; text-transform:uppercase;">Scan Untuk Bayar</h3>
+                    <img src="qrcode.jpg" alt="QR Maybank" class="qr-code" onerror="this.src='https://placehold.co/200x200?text=SILA+UPLOAD+QR'">
+                    
+                    <div style="margin-top:15px; font-size:14px; color:#555;">MAYBANK</div>
+                    <div style="font-size:20px; font-weight:800; letter-spacing:1px; color:black;">162188500045</div>
+                    <div style="font-size:13px; color:#666;">Zunita Binti Haji Morat</div>
                 </div>
 
                 <form id="daftarForm">
                     <div class="input-group">
-                        <label>Nama Peserta</label>
-                        <input type="text" id="nama" required placeholder="Nama Penuh">
+                        <label>NAMA PENUH PESERTA</label>
+                        <input type="text" id="nama" required placeholder="Contoh: Ali Bin Abu">
                     </div>
 
                     <div class="input-group">
-                        <label>Kategori Umur</label>
+                        <label>KATEGORI UMUR</label>
                         <select id="kategori" required>
-                            <option value="">Sila Pilih</option>
+                            <option value="">-- Sila Pilih Kategori --</option>
                             <option value="7-9 Tahun">7 - 9 Tahun</option>
                             <option value="10-12 Tahun">10 - 12 Tahun</option>
                             <option value="13-15 Tahun">13 - 15 Tahun</option>
@@ -181,34 +271,46 @@
                     </div>
 
                     <div class="input-group">
-                        <label>No. Telefon Penjaga</label>
-                        <input type="tel" id="phone" required placeholder="0123456789">
+                        <label>NO. TELEFON PENJAGA</label>
+                        <input type="tel" id="phone" required placeholder="012xxxxxxx">
                     </div>
 
                     <div class="input-group">
-                        <label>Upload Resit (Wajib)</label>
-                        <input type="file" id="resit" accept="image/*" required>
-                        <small style="color:#888; display:block; margin-top:5px;">Format: JPG/PNG sahaja</small>
+                        <label>RESIT BAYARAN (WAJIB)</label>
+                        <div style="background:#2a2a2a; padding:10px; border-radius:8px; border:1px dashed #555;">
+                            <input type="file" id="resit" accept="image/*" required style="border:none; padding:0;">
+                            <small style="color:#888; display:block; margin-top:5px; font-size:11px;">Format: Gambar (JPG/PNG) sahaja</small>
+                        </div>
                     </div>
 
                     <button type="submit" id="btnSubmit">HANTAR PENDAFTARAN</button>
-                    <div id="loading" class="hidden">⏳ Sedang memuat naik resit ke sistem...<br>Jangan tutup browser.</div>
+                    
+                    <div id="loading" class="hidden">
+                        ⏳ <b>SEDANG DIPROSES...</b><br>
+                        Mohon tunggu sebentar, resit sedang dimuat naik.
+                    </div>
                 </form>
             </div>
         </div>
 
         <div id="success-screen">
-            <div class="success-icon">✅</div>
-            <h2>Pendaftaran Berjaya!</h2>
-            <p>Data dan resit anda telah selamat diterima oleh pihak pengurusan Sempoi FC.</p>
-            <p style="color:#888; margin-top:20px;">Jumpa anda di padang!</p>
-            <button onclick="location.reload()" style="background:#333; margin-top:20px;">Daftar Peserta Lain</button>
+            <span class="success-icon">✅</span>
+            <h2 style="color:var(--gold);">PENDAFTARAN BERJAYA!</h2>
+            <p style="color:#ccc; line-height:1.6;">
+                Terima kasih. Data dan resit anda telah diterima oleh pihak pengurusan Sempoi FC.
+            </p>
+            <div style="margin-top:30px; padding:15px; background:#222; border-radius:10px; color:#888; font-size:13px;">
+                Jumpa anda di padang nanti!
+            </div>
+            <button onclick="location.reload()" style="background:#333; border-bottom:3px solid #111; margin-top:20px; font-size:14px;">
+                DAFTAR PESERTA LAIN
+            </button>
         </div>
 
     </div>
 
     <script>
-        // URL Google Script anda
+        // URL Google Script Anda
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwm12LPfSaLGr47tvA6ugu4D5Eh9w677bJSOQEIELK6hqxk9F3kZHNytr5xgHw5rYX1tA/exec"; 
 
         const form = document.getElementById('daftarForm');
@@ -221,34 +323,39 @@
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
 
+            // Validation simple
             if (!fileInput.files.length) {
-                alert("Sila upload resit pembayaran!");
+                alert("Sila upload resit pembayaran dahulu.");
                 return;
             }
 
-            // 1. Tunjukkan Loading
+            // 1. UI Loading State
             btn.disabled = true;
-            btn.innerText = "SEDANG PROSES...";
+            btn.innerText = "SEDANG MENGHANTAR...";
+            btn.style.opacity = "0.5";
             loading.classList.remove('hidden');
 
-            // 2. Proses Gambar
+            // 2. Baca fail gambar
             const file = fileInput.files[0];
             const reader = new FileReader();
 
             reader.readAsDataURL(file);
             reader.onload = async function() {
+                // Ambil data base64 (buang header 'data:image/jpeg;base64,')
                 const base64Data = reader.result.split(',')[1]; 
                 
                 const payload = {
-                    nama: document.getElementById('nama').value,
+                    nama: document.getElementById('nama').value.toUpperCase(), // Auto huruf besar
                     kategori: document.getElementById('kategori').value,
                     phone: document.getElementById('phone').value,
                     file: base64Data,
-                    mimeType: file.type
+                    mimeType: file.type,
+                    fileName: file.name
                 };
 
                 try {
-                    // 3. Hantar ke Google (Guna mode no-cors untuk elak error)
+                    // 3. Hantar ke Google Script
+                    // Mode 'no-cors' digunakan untuk elak error "Failed to fetch"
                     await fetch(SCRIPT_URL, {
                         method: "POST",
                         mode: "no-cors", 
@@ -258,14 +365,23 @@
                         body: JSON.stringify(payload)
                     });
 
-                    // 4. Berjaya (Terus tunjuk success sebab no-cors tak bagi baca response)
-                    formScreen.style.display = 'none';
-                    successScreen.style.display = 'block';
+                    // 4. Papar Mesej Berjaya
+                    // Kerana 'no-cors', browser tak dapat baca response server.
+                    // Kita anggap berjaya jika tiada network error.
+                    setTimeout(() => {
+                        formScreen.style.display = 'none';
+                        successScreen.style.display = 'block';
+                        window.scrollTo(0,0);
+                    }, 1000); // Delay sikit bagi nampak smooth
 
                 } catch (error) {
-                    alert("Ralat network. Sila pastikan internet anda stabil.\n" + error);
+                    console.error(error);
+                    alert("Maaf, ada masalah sambungan internet. Sila cuba lagi.");
+                    
+                    // Reset butang jika error
                     btn.disabled = false;
                     btn.innerText = "HANTAR PENDAFTARAN";
+                    btn.style.opacity = "1";
                     loading.classList.add('hidden');
                 }
             };
@@ -274,4 +390,3 @@
 
 </body>
 </html>
-
