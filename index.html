@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pendaftaran Mini Tournament Sempoi FC 2026</title>
+    <style>
+        /* TEMA HITAM MERAH SEMPOI FC */
+        :root {
+            --primary: #D32F2F; /* Merah */
+            --dark: #000000;    /* Hitam */
+            --bg: #121212;      /* Kelabu Gelap */
+            --text: #ffffff;
+            --accent: #FFD700;  /* Kuning Emas sikit */
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--dark);
+            color: var(--text);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px;
+            background-color: var(--bg);
+            border-radius: 12px;
+            box-shadow: 0 0 25px rgba(211, 47, 47, 0.4);
+            overflow: hidden;
+            border: 1px solid #333;
+        }
+
+        /* HEADER */
+        .header {
+            background: linear-gradient(180deg, #8b0000 0%, #000000 100%);
+            text-align: center;
+            padding: 30px 20px;
+            border-bottom: 3px solid var(--primary);
+        }
+
+        .logo {
+            width: 110px;
+            height: 110px;
+            background-color: #fff;
+            border-radius: 50%;
+            border: 3px solid var(--accent);
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+
+        h1 { margin: 10px 0 5px; font-size: 24px; text-transform: uppercase; letter-spacing: 1px; }
+        h2 { margin: 0; font-size: 14px; font-weight: normal; color: #ccc; }
+
+        /* CONTENT */
+        .content { padding: 25px; }
+
+        .card {
+            background-color: #1e1e1e;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .info-row { margin: 8px 0; font-size: 15px; }
+        .label { color: var(--primary); font-weight: bold; font-size: 12px; text-transform: uppercase; display: block; }
+
+        /* PAYMENT */
+        .payment-box {
+            background: #fff;
+            color: #000;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 25px;
+            border: 2px solid var(--accent);
+        }
+
+        .qr-code {
+            width: 100%;
+            max-width: 200px;
+            margin: 10px auto;
+            display: block;
+        }
+
+        .bank-info { font-weight: bold; font-size: 18px; margin: 10px 0; }
+        .acc-name { font-size: 14px; color: #555; font-weight: normal; }
+
+        /* FORM */
+        form { display: flex; flex-direction: column; gap: 15px; }
+        
+        .input-group { text-align: left; }
+        .input-group label { color: var(--accent); font-size: 14px; margin-bottom: 5px; display: block; font-weight: bold; }
+        
+        input, select {
+            width: 100%;
+            padding: 12px;
+            background: #2a2a2a;
+            border: 1px solid #444;
+            color: white;
+            border-radius: 6px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        input:focus, select:focus { outline: none; border-color: var(--primary); }
+
+        button {
+            background-color: var(--primary);
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 6px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+        
+        button:hover { background-color: #b71c1c; }
+        button:disabled { background-color: #555; cursor: not-allowed; }
+
+        /* ALERTS */
+        .hidden { display: none; }
+        #loading { text-align: center; color: var(--accent); margin-top: 10px; font-size: 14px; }
+        
+        #success-screen {
+            text-align: center;
+            padding: 40px 20px;
+            display: none;
+        }
+        .success-icon { font-size: 50px; color: #4CAF50; margin-bottom: 20px; }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div id="form-screen">
+            <header class="header">
+                <img src="logo.jpg" alt="Logo Sempoi FC" class="logo" onerror="this.src='https://placehold.co/100x100?text=LOGO'">
+                <h1>Pendaftaran<br>Sempoi FC 2026</h1>
+                <h2>18 Januari 2026 | Padang SK Pandan Jaya</h2>
+            </header>
+
+            <div class="content">
+                
+                <div class="card">
+                    <div class="info-row"><span class="label">Yuran Pendaftaran</span> RM10.00 Seorang</div>
+                </div>
+
+                <div class="payment-box">
+                    <h3 style="margin-top:0; color:#b71c1c">INFO PEMBAYARAN</h3>
+                    <img src="qrcode.jpeg" alt="QR Maybank" class="qr-code" onerror="this.src='https://placehold.co/200x200?text=QR+CODE'">
+                    <div class="bank-info">MAYBANK<br>162188500045</div>
+                    <div class="acc-name">Zunita Binti Haji Morat</div>
+                </div>
+
+                <form id="daftarForm">
+                    <div class="input-group">
+                        <label>Nama Peserta</label>
+                        <input type="text" id="nama" required placeholder="Nama Penuh">
+                    </div>
+
+                    <div class="input-group">
+                        <label>Kategori Umur</label>
+                        <select id="kategori" required>
+                            <option value="">Sila Pilih</option>
+                            <option value="7-9 Tahun">7 - 9 Tahun</option>
+                            <option value="10-12 Tahun">10 - 12 Tahun</option>
+                            <option value="13-15 Tahun">13 - 15 Tahun</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label>No. Telefon Penjaga</label>
+                        <input type="tel" id="phone" required placeholder="0123456789">
+                    </div>
+
+                    <div class="input-group">
+                        <label>Upload Resit (Wajib)</label>
+                        <input type="file" id="resit" accept="image/*" required>
+                        <small style="color:#888; display:block; margin-top:5px;">Format: JPG/PNG sahaja</small>
+                    </div>
+
+                    <button type="submit" id="btnSubmit">HANTAR PENDAFTARAN</button>
+                    <div id="loading" class="hidden">⏳ Sedang memuat naik resit ke sistem...<br>Jangan tutup browser.</div>
+                </form>
+            </div>
+        </div>
+
+        <div id="success-screen">
+            <div class="success-icon">✅</div>
+            <h2>Pendaftaran Berjaya!</h2>
+            <p>Data dan resit anda telah selamat diterima oleh pihak pengurusan Sempoi FC.</p>
+            <p style="color:#888; margin-top:20px;">Jumpa anda di padang!</p>
+            <button onclick="location.reload()" style="background:#333; margin-top:20px;">Daftar Peserta Lain</button>
+        </div>
+
+    </div>
+
+    <script>
+        // ==========================================
+        // URL SCRIPT ANDA SUDAH DIMASUKKAN DI SINI
+        // ==========================================
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwm12LPfSaLGr47tvA6ugu4D5Eh9w677bJSOQEIELK6hqxk9F3kZHNytr5xgHw5rYX1tA/exec"; 
+
+        const form = document.getElementById('daftarForm');
+        const fileInput = document.getElementById('resit');
+        const btn = document.getElementById('btnSubmit');
+        const loading = document.getElementById('loading');
+        const formScreen = document.getElementById('form-screen');
+        const successScreen = document.getElementById('success-screen');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            if (!fileInput.files.length) {
+                alert("Sila upload resit pembayaran!");
+                return;
+            }
+
+            // UI Loading
+            btn.disabled = true;
+            btn.innerText = "SEDANG PROSES...";
+            loading.classList.remove('hidden');
+
+            const file = fileInput.files[0];
+            const reader = new FileReader();
+
+            // Tukar gambar ke Base64 supaya boleh dihantar ke Google Script
+            reader.readAsDataURL(file);
+            reader.onload = async function() {
+                const base64Data = reader.result.split(',')[1]; // Buang header data:image...
+                
+                const payload = {
+                    nama: document.getElementById('nama').value,
+                    kategori: document.getElementById('kategori').value,
+                    phone: document.getElementById('phone').value,
+                    file: base64Data,
+                    mimeType: file.type
+                };
+
+                try {
+                    // Hantar data ke Google Script
+                    await fetch(SCRIPT_URL, {
+                        method: "POST",
+                        body: JSON.stringify(payload)
+                    });
+
+                    // Papar Success
+                    formScreen.style.display = 'none';
+                    successScreen.style.display = 'block';
+
+                } catch (error) {
+                    alert("Ralat semasa menghantar. Sila cuba lagi.\n" + error);
+                    btn.disabled = false;
+                    btn.innerText = "HANTAR PENDAFTARAN";
+                    loading.classList.add('hidden');
+                }
+            };
+        });
+    </script>
+
+</body>
+</html>
