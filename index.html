@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pendaftaran Mini Tournament Sempoi FC 2026</title>
+    <title>Pendaftaran Sempoi FC 2026</title>
     <style>
         /* TEMA HITAM MERAH SEMPOI FC */
         :root {
-            --primary: #D32F2F; /* Merah */
-            --dark: #000000;    /* Hitam */
-            --bg: #121212;      /* Kelabu Gelap */
+            --primary: #D32F2F;
+            --dark: #000000;
+            --bg: #121212;
             --text: #ffffff;
-            --accent: #FFD700;  /* Kuning Emas sikit */
+            --accent: #FFD700;
         }
 
         body {
@@ -146,7 +146,7 @@
         
         <div id="form-screen">
             <header class="header">
-                <img src="logo.jpg" alt="Logo Sempoi FC" class="logo" onerror="this.src='https://placehold.co/100x100?text=LOGO'">
+                <img src="logo.jpg" alt="Logo Sempoi FC" class="logo" onerror="this.style.display='none'">
                 <h1>Pendaftaran<br>Sempoi FC 2026</h1>
                 <h2>18 Januari 2026 | Padang SK Pandan Jaya</h2>
             </header>
@@ -159,7 +159,7 @@
 
                 <div class="payment-box">
                     <h3 style="margin-top:0; color:#b71c1c">INFO PEMBAYARAN</h3>
-                    <img src="qrcode.jpeg" alt="QR Maybank" class="qr-code" onerror="this.src='https://placehold.co/200x200?text=QR+CODE'">
+                    <img src="qrcode.jpg" alt="QR Maybank" class="qr-code" onerror="this.src='https://placehold.co/200x200?text=QR+CODE'">
                     <div class="bank-info">MAYBANK<br>162188500045</div>
                     <div class="acc-name">Zunita Binti Haji Morat</div>
                 </div>
@@ -208,9 +208,7 @@
     </div>
 
     <script>
-        // ==========================================
-        // URL SCRIPT ANDA SUDAH DIMASUKKAN DI SINI
-        // ==========================================
+        // URL Google Script anda
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwm12LPfSaLGr47tvA6ugu4D5Eh9w677bJSOQEIELK6hqxk9F3kZHNytr5xgHw5rYX1tA/exec"; 
 
         const form = document.getElementById('daftarForm');
@@ -228,18 +226,18 @@
                 return;
             }
 
-            // UI Loading
+            // 1. Tunjukkan Loading
             btn.disabled = true;
             btn.innerText = "SEDANG PROSES...";
             loading.classList.remove('hidden');
 
+            // 2. Proses Gambar
             const file = fileInput.files[0];
             const reader = new FileReader();
 
-            // Tukar gambar ke Base64 supaya boleh dihantar ke Google Script
             reader.readAsDataURL(file);
             reader.onload = async function() {
-                const base64Data = reader.result.split(',')[1]; // Buang header data:image...
+                const base64Data = reader.result.split(',')[1]; 
                 
                 const payload = {
                     nama: document.getElementById('nama').value,
@@ -250,18 +248,22 @@
                 };
 
                 try {
-                    // Hantar data ke Google Script
+                    // 3. Hantar ke Google (Guna mode no-cors untuk elak error)
                     await fetch(SCRIPT_URL, {
                         method: "POST",
+                        mode: "no-cors", 
+                        headers: {
+                            "Content-Type": "text/plain"
+                        },
                         body: JSON.stringify(payload)
                     });
 
-                    // Papar Success
+                    // 4. Berjaya (Terus tunjuk success sebab no-cors tak bagi baca response)
                     formScreen.style.display = 'none';
                     successScreen.style.display = 'block';
 
                 } catch (error) {
-                    alert("Ralat semasa menghantar. Sila cuba lagi.\n" + error);
+                    alert("Ralat network. Sila pastikan internet anda stabil.\n" + error);
                     btn.disabled = false;
                     btn.innerText = "HANTAR PENDAFTARAN";
                     loading.classList.add('hidden');
